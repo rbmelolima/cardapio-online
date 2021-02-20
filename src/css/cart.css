@@ -1,0 +1,52 @@
+.payment-forms-section .payment-forms-select {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  resize: none;
+  overflow: auto;
+  height: 6rem;
+}
+
+.total-value-container #total-value-input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff;
+}
+
+.btn-delivery {
+  outline: none;
+  border: none;
+  background-color: var(--green);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.btn-delivery:hover {
+  background-color: #29B47E;
+}
+
+.delivery-away-section .wrapper-radio{
+  margin-bottom: 1rem;
+}

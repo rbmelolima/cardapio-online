@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="@rbmelolima" />
+  <!-- About -->
+  <meta name="description" content="" />
+  <meta name="keywords" content="">
+  <link rel="shortcut icon" href="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="./src/css/reset.css" rel="preload" />
+  <link rel="stylesheet" href="./src/css/global.css" rel="preload" />
+  <link rel="stylesheet" href="./src/css/product.css" rel="preload" />
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- Page -->
+  <title>Netto Pastelaria - Cardápio</title>
+</head>
+
+<body>
+  <!-- Barra de navegação inferior -->
+  <div class="bottomNavigationBar">
+    <div class="center">
+      <a href="index.html" title="Início"> <img src="./src/images/home.svg" alt="Início"></a>
+      <a href="produtos.html" title="Produtos"> <img src="./src/images/product.svg" alt="Produtos"></a>
+      <a href="carrinho.html" title="Carrinho"> <img src="./src/images/cart.svg" alt="Carrinho"></a>
+    </div>
+  </div>
+
+  <header>
+    <div class="image" style="background-image: url(./src/images/capa.jpg);">
+      <div class="overlay-black">
+        <div class="content">
+          <img
+            src="https://www.flaticon.com/svg/vstatic/svg/3969/3969778.svg?token=exp=1613776286~hmac=c31beb31ffb1f8995a45b10fb9598d1c"
+            alt="">
+          <h1>Netto Pastelaria</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="categories-products-sticky">
+    <div class="content app-width">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><a href="#pastel" class="active">Pastel</a></div>
+          <div class="swiper-slide"><a href="#pastel-doce">Pastel doce</a></div>
+          <div class="swiper-slide"><a href="#pastel-doce">Pastel especial</a></div>
+          <div class="swiper-slide"><a href="#bebidas">Bebidas</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="app-width">
+    <section id="pastel" class="section-products">
+      <h3>Pastel</h3>
+
+      <div class="container-product" id="product-key-pastel-carne">
+        <div class="row">
+          <div class="image-product"
+            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+          </div>
+
+          <div class="content-product">
+            <div class="description">
+              <strong class="name-product">Pastel de carne</strong>
+              <p class="description-product">Carne, pimenta biquinho, salsinha, etc</p>
+            </div>
+          </div>
+
+          <div class="information">
+            <p class="price">R$ 6,00</p>
+          </div>
+        </div>
+        <div class="row controls">
+          <div class="button-quantity-container">
+            <button onclick="decrementQuantityProduct('input-key-hash-87897897')">-</button>
+            <input class="quantity" type="text" disabled value="1" id="input-key-hash-87897897">
+            <button onclick="incrementQuantityProduct('input-key-hash-87897897')">+</button>
+          </div>
+          <button class="button-add" onclick="addCart('product-key-pastel-carne')">Adicionar</button>
+        </div>
+      </div>
+
+      <div class="container-product" id="product-key-pastel-frango">
+        <div class="row">
+          <div class="image-product"
+            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+          </div>
+
+          <div class="content-product">
+            <div class="description">
+              <strong class="name-product">Pastel de frango</strong>
+              <p class="description-product">Frango, pimenta biquinho, salsinha, etc</p>
+            </div>
+          </div>
+
+          <div class="information">
+            <p class="price">R$ 6,00</p>
+          </div>
+        </div>
+        <div class="row controls">
+          <div class="button-quantity-container">
+            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
+            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
+            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
+          </div>
+          <button class="button-add" onclick="addCart('product-key-pastel-frango')">Adicionar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="./src/js/index.js"></script>
+
+  <!-- Swiper -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    const swiper = new Swiper('.categories-products-sticky .swiper-container', {
+      direction: 'horizontal',
+      slidesPerView: 'auto',
+      spaceBetween: 32
+    });
+  </script>
+</body>
+
+</html>

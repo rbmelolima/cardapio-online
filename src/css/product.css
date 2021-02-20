@@ -1,0 +1,188 @@
+/* Product ------------------------------------------------ */
+.container-product {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.container-product .image-product{
+  width: 3.75rem;
+  height: 3.75rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;  
+}
+
+.container-product .content-product{
+  width: 100%;
+  display: flex;
+  flex-direction: column;  
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container-product .content-product.not-has-image{
+  padding-left: 0;
+}
+
+.container-product .description strong {  
+  font-weight: bold;
+  font-size: 1.0rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.container-product .description p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: var(--text-secundary);
+  display: block;  
+}
+
+@media screen and (min-width: 576px) {
+  .container-product .description strong {  
+    font-size: 1.2rem;   
+  }
+
+  .container-product .description p {
+    font-size: 1rem;
+  }
+}
+
+.container-product .information .price {
+  font-weight: bold;
+  color: var(--text-primary);
+  width: max-content;
+}
+
+.container-product .row.controls {
+  margin-top: 1.2rem;
+  /* Cálculo do tamanho da imagem + o margin left */
+  margin-left: calc(3.75rem + 1rem);
+}
+
+@media screen and (max-width: 350px) {
+  .container-product .row.controls {    
+    /* Cálculo do tamanho da imagem + o margin left */
+    margin-left: 0;
+  }
+}
+
+.container-product .row.controls.not-has-image {
+  margin-left: 0;
+}
+
+.container-product .button-add,
+.container-product .button-remove {
+  outline: none;
+  border: none; 
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #fff;
+  transition: all ease-in-out 0.3s;
+}
+
+.container-product .button-add {
+  background-color: var(--green);
+  margin-right: 1rem;
+}
+
+.container-product .button-add:hover {
+  background-color: #29B47E;
+}
+
+.container-product .button-remove {
+  background-color: var(--red);
+}
+
+.container-product .button-remove:hover {
+  background-color: #DD1919;
+}
+
+.container-product .button-quantity-container {
+  display: flex;
+  align-items: center;
+  border: 0.075rem solid #E0E0E0;
+  border-radius: 0.28125rem;
+  margin-right: 1rem;
+}
+
+.container-product .button-quantity-container button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  transition: all 0.4s linear;
+}
+
+.container-product .button-quantity-container button:last-child{
+  color: var(--red);
+}
+
+.container-product .button-quantity-container button,
+.container-product .button-quantity-container input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.container-product .button-quantity-container input {
+  background-color: transparent;
+  width: 2.2rem;
+  border: none;
+  text-align: center;
+}
+
+.container-product .button-quantity-container button {
+  font-size: 1.2rem;
+}
+
+/* Categories Product ------------------------------------------------ */
+.categories-products-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-bottom: 0.0625rem solid #EBEBEB;
+  background-color: var(--background);
+  z-index: 99;  
+  padding-top: 1rem;
+}
+
+.categories-products-sticky .content {
+  padding: 0 1rem;
+}
+
+.categories-products-sticky .content .swiper-wrapper {
+  height: 1.5rem;  
+}
+
+.categories-products-sticky .content .swiper-slide {
+  width: -moz-fit-content;
+  width: fit-content;  
+}
+
+.categories-products-sticky .content a {
+  font-weight: bold;
+  font-size: 1.2rem; 
+  text-align: center;    
+  text-decoration: none;
+  color: #A8A8A8;
+  border-bottom: 1px solid transparent;
+  transition: all linear 0.4s;
+}
+
+.categories-products-sticky .content a.active {
+  color: var(--red);
+  border-bottom: 0.125rem solid var(--red);
+}

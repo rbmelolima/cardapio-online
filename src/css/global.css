@@ -1,0 +1,215 @@
+:root {
+  --background: #fafafa;
+  --text-primary: #000000;
+  --text-secundary: #424242;
+  --red: #FC0202;
+  --green: #0ACF83;
+  --whatsapp: #25d366;
+  --facebook: #3B5998;
+  --instagram: linear-gradient(225.4deg, #7A2C9E 0%, #DD5789 59.47%, #FEDC2A 93.59%);
+  --chip-color: #E7E7E7;
+  font-size: 100%;  
+}
+
+@media screen and (min-width: 1024px) {
+  :root {   
+    font-size: 110%;  
+  }
+}
+
+/* HTML ELEMENTS  ------------------------------------------------ */
+body {
+  width: 100%;
+  max-width: 100%;  
+  min-height: 100vh;
+  background-color: var(--background);
+  position: relative;
+  font-family: "Roboto";
+}
+
+main {
+  position: relative;
+  padding: 0 1rem 5rem 1rem;
+  display: flex;
+  flex-direction: column;  
+}
+
+main > section {
+  margin: 1.2rem 0;
+}
+
+main > section:first-child {
+  margin-top: 3rem;
+}
+
+main section iframe {
+  width: 100%;
+  height: 12.5rem;
+}
+
+p {
+  line-height: 1.6rem;
+}
+
+strong {
+  font-weight: bold;
+}
+
+button {
+  outline: none;
+}
+
+/* CLASS ------------------------------------------------ */
+
+.app-width {
+  max-width: 50rem;
+  width: 100%;
+  margin: 0 auto;      
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+/* OTHER COMPONENTS ------------------------------------------------ */
+.position-absolute-whatsapp {
+  position: fixed;
+  bottom: 6rem;
+  left: calc(100% - 6.25rem);
+  background-color: var(--whatsapp);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: all ease-in-out 0.4s;
+}
+
+.position-absolute-whatsapp img {
+  width: 2.5rem;
+  height: auto;
+}
+
+/* Chips de formas de pagamento */
+.payment-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;  
+}
+
+.payment-container .payment-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  background-color: var(--chip-color);
+  margin-right: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Redes sociais */
+.social-media-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.social-media-facebook,
+.social-media-instagram {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 2rem 0;
+  min-height: 8rem;
+}
+
+.social-media-facebook {
+  background: var(--facebook);
+}
+
+.social-media-instagram  {
+  background: var(--instagram);
+}
+
+header {
+  width: 100%;
+}
+
+header .image{
+  width: 100%;  
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 20rem; 
+}
+
+header .overlay-black {
+  width: 100%;
+  height: 100%;  
+  z-index: 2;  
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+header .content img {
+  max-width: 10rem;
+}
+
+.bottomNavigationBar {
+  position: fixed;
+  bottom: 0;
+  background: #FFFFFF;
+  box-shadow: 0px 9.28571px 11.6071px rgba(0, 0, 0, 0.14), 0px 3.48214px 16.25px rgba(0, 0, 0, 0.12), 0px 5.80357px 5.80357px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 4.0rem;
+}
+
+.bottomNavigationBar .center {
+  max-width: 25rem;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottomNavigationBar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: all 0.3s linear;
+  outline: none;
+  text-decoration: none;
+}
+
+.bottomNavigationBar a:active,
+.bottomNavigationBar a:hover {
+  background-color: #dfdfdf;
+}
+
