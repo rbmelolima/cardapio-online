@@ -172,6 +172,7 @@ header .overlay-black {
 
 header .content img {
   max-width: 20rem;
+  transform: rotate(30deg);
 }
 
 header .content h1{
