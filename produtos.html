@@ -17,8 +17,7 @@
   <link rel="stylesheet" href="./src/css/global.css" rel="preload" />
   <link rel="stylesheet" href="./src/css/product.css" rel="preload" />
   <!-- Swiper -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./src/swiper/swiper-bundle.min.css" />
 
   <!-- Page -->
   <title>Netto Pastelaria - Cardápio</title>
@@ -34,13 +33,18 @@
     </div>
   </div>
 
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+
   <header>
     <div class="image" style="background-image: url(./src/images/capa.jpg);">
       <div class="overlay-black">
         <div class="content">
-          <img
-            src="https://www.flaticon.com/svg/vstatic/svg/3969/3969778.svg?token=exp=1613776286~hmac=c31beb31ffb1f8995a45b10fb9598d1c"
-            alt="">
+          <img src="./src/images/logo (1).png" alt="">
           <h1>Netto Pastelaria</h1>
         </div>
       </div>
@@ -65,21 +69,22 @@
     <section id="pastel" class="section-products">
       <h3>Pastel</h3>
 
-      <div class="container-product" id="product-key-pastel-carne">
+      <div class="container-product" id="product-key-x-salada">
         <div class="row">
           <div class="image-product"
-            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+            onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')"
+            style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
             <div class="description">
-              <strong class="name-product">Pastel de carne</strong>
-              <p class="description-product">Carne, pimenta biquinho, salsinha, etc</p>
+              <strong class="name-product">X-Salada</strong>
+              <p class="description-product">Hambúrguer, alface, tomate, cheddar</p>
             </div>
           </div>
 
           <div class="information">
-            <p class="price">R$ 6,00</p>
+            <p class="price">R$ 7,00</p>
           </div>
         </div>
         <div class="row controls">
@@ -88,25 +93,26 @@
             <input class="quantity" type="text" disabled value="1" id="input-key-hash-87897897">
             <button onclick="incrementQuantityProduct('input-key-hash-87897897')">+</button>
           </div>
-          <button class="button-add" onclick="addCart('product-key-pastel-carne')">Adicionar</button>
+          <button class="button-add" onclick="addCart('product-key-x-salada')">Adicionar</button>
         </div>
       </div>
 
-      <div class="container-product" id="product-key-pastel-frango">
+      <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
           <div class="image-product"
-            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');">
+            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
+            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
             <div class="description">
-              <strong class="name-product">Pastel de frango</strong>
-              <p class="description-product">Frango, pimenta biquinho, salsinha, etc</p>
+              <strong class="name-product">Pizza de mussarela</strong>
+              <p class="description-product">Mussarela, tomate, orégano</p>
             </div>
           </div>
 
           <div class="information">
-            <p class="price">R$ 6,00</p>
+            <p class="price">R$ 22,00</p>
           </div>
         </div>
         <div class="row controls">
@@ -115,7 +121,7 @@
             <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
             <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
           </div>
-          <button class="button-add" onclick="addCart('product-key-pastel-frango')">Adicionar</button>
+          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
         </div>
       </div>
     </section>
@@ -125,17 +131,14 @@
 
   <!-- Scripts -->
   <script src="./src/js/index.js"></script>
-
-  <!-- Swiper -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./src/swiper/swiper-bundle.min.js"></script>
 
   <script>
     const swiper = new Swiper('.categories-products-sticky .swiper-container', {
       direction: 'horizontal',
       slidesPerView: 'auto',
       spaceBetween: 32
-    });
+    });   
   </script>
 </body>
 

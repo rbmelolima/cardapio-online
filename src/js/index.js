@@ -1,3 +1,21 @@
+/* Modal --------------------------------------- */
+
+function openImage(src, caption) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+
+  modal.style.display = "block";
+  modalImg.src = src;
+  captionText.innerHTML = caption;
+
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+}
+
 /* Increment and Decrement --------------------------------------- */
 function getInputAndNumericValue(idInputNumber) {
   const input = document.getElementById(idInputNumber);
