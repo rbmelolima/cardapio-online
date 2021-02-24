@@ -1,59 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="author" content="@rbmelolima" />
-  <!-- About -->
-  <meta name="description" content="" />
-  <meta name="keywords" content="">
-  <link rel="shortcut icon" href="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Styles -->
-  <link rel="stylesheet" href="./src/css/style.css" rel="preload" />  
-  <link rel="stylesheet" href="./src/swiper/swiper-bundle.min.css" />
-
-  <!-- Page -->
-  <title>Netto Pastelaria - Cardápio</title>
-</head>
+<?php require_once('includes/head.php'); ?>
 
 <body>
-  <!-- Barra de navegação inferior -->
-  <div class="bottomNavigationBar">
-    <div class="center">
-      <a href="index.html" title="Início"> <img src="./src/images/home.svg" alt="Início"></a>
-      <a href="produtos.html" title="Produtos"> <img src="./src/images/product.svg" alt="Produtos"></a>
-      <a href="carrinho.html" title="Carrinho"> <img src="./src/images/cart.svg" alt="Carrinho"></a>
-    </div>
-  </div>
+  <?php require_once('includes/bottom_navigation.php'); ?>
 
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01">
-    <div id="caption"></div>
-  </div>
+  <?php require_once('includes/modal.php'); ?>
 
-  <header>
-    <div class="image" style="background-image: url(./src/images/capa.jpg);">
-      <div class="overlay-black">
-        <div class="content">
-          <img src="./src/images/logo (1).png" alt="">
-          <h1>Netto Pastelaria</h1>
-        </div>
-      </div>
-    </div>
-  </header>
-
+  <?php require_once('includes/header.php'); ?>
 
   <div class="categories-products-sticky">
     <div class="content app-width">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="#pastel" class="active">Pastel</a></div>          
+          <div class="swiper-slide"><a href="#pastel" class="active">Pastel</a></div>
           <div class="swiper-slide"><a href="#bebidas">Bebidas</a></div>
         </div>
       </div>
@@ -66,9 +27,7 @@
 
       <div class="container-product" id="product-key-x-salada">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')"
-            style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -94,9 +53,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -122,9 +79,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -150,9 +105,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -178,9 +131,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -210,9 +161,7 @@
 
       <div class="container-product" id="product-key-x-salada">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')"
-            style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -238,9 +187,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -266,9 +213,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -294,9 +239,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -322,9 +265,7 @@
 
       <div class="container-product" id="product-key-pizza-mussarela">
         <div class="row">
-          <div class="image-product"
-            onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')"
-            style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
           </div>
 
           <div class="content-product">
@@ -353,69 +294,10 @@
   <footer></footer>
 
   <!-- Scripts -->
-  <script src="./src/js/index.js"></script>
-  <script src="./src/swiper/swiper-bundle.min.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/src/js/products.js"></script>
 
-  <script>
-    const swiper = new Swiper('.categories-products-sticky .swiper-container', {
-      direction: 'horizontal',
-      slidesPerView: 'auto',
-      spaceBetween: 32
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-      // grab the sections (targets) and menu_links (triggers)
-      // for menu items to apply active link styles to
-      const sections = document.querySelectorAll(".section-products");
-      const menu_links = document.querySelectorAll(".swiper-slide a");
-
-      // functions to add and remove the active class from links as appropriate
-      const makeActive = (link) => menu_links[link].classList.add("active");
-      const removeActive = (link) => menu_links[link].classList.remove("active");
-      const removeAllActive = () => [...Array(sections.length).keys()].forEach((link) => removeActive(link));
-
-      // change the active link a bit above the actual section
-      // this way it will change as you're approaching the section rather
-      // than waiting until the section has passed the top of the screen
-      const sectionMargin = 200;
-
-      // keep track of the currently active link
-      // use this so as not to change the active link over and over
-      // as the user scrolls but rather only change when it becomes
-      // necessary because the user is in a new section of the page
-      let currentActive = 0;
-
-      // listen for scroll events
-      window.addEventListener("scroll", () => {
-
-        // check in reverse order so we find the last section
-        // that's present - checking in non-reverse order would
-        // report true for all sections up to and including
-        // the section currently in view
-        //
-        // Data in play:
-        // window.scrollY    - is the current vertical position of the window
-        // sections          - is a list of the dom nodes of the sections of the page
-        //                     [...sections] turns this into an array so we can
-        //                     use array options like reverse() and findIndex()
-        // section.offsetTop - is the vertical offset of the section from the top of the page
-        // 
-        // basically this lets us compare each section (by offsetTop) against the
-        // viewport's current position (by window.scrollY) to figure out what section
-        // the user is currently viewing
-        const current = sections.length - [...sections].reverse().findIndex((section) => window.scrollY >= section.offsetTop - sectionMargin) - 1
-
-        // only if the section has changed
-        // remove active class from all menu links
-        // and then apply it to the link for the current section
-        if(current !== currentActive) {
-          removeAllActive();
-          currentActive = current;
-          makeActive(current);
-        }
-      });
-    }, false);
-  </script>
 </body>
 
 </html>

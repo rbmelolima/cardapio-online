@@ -95,7 +95,11 @@ function deleteProductOnStorage(key) {
 function returnAllProductsOnStorage() {
   let products = [];
   let keys = Object.keys(localStorage);
-  for(let key of keys) products.push(localStorage.getItem(key));
+  for(let key of keys) {
+    if(key.toString().startsWith('product')) {
+      products.push(localStorage.getItem(key))
+    }
+  }
   return products;
 }
 
