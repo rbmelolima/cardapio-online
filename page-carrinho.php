@@ -24,9 +24,17 @@
     <section class="payment-forms-section">
       <h4>Formas de pagamento</h4>
       <select name="payment-forms-select" class="payment-forms-select" id="payment-forms-select">
-        <option value="Dinheiro">Dinheiro</option>
-        <option value="Cartão de crédito">Cartão de crédito</option>
-        <option value="Cartão de débito">Cartão de débito</option>
+        <?php
+        try {
+          $wp_payment_methods_array = explode(",", $wp_payment_methods);
+
+          foreach ($wp_payment_methods_array as $method) {
+            echo  "<option value=" . $method . ">" . $method . "</option>";
+          }
+        } catch (Exception $e) {
+          echo "<option value=\"Dinheiro\">Dinheiro</option>";
+        }
+        ?>
       </select>
     </section>
 
