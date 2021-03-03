@@ -95,6 +95,13 @@ function createProductInformationDiv(nameProduct, descriptionProduct, priceProdu
   return rowDiv;
 }
 
+function updateUIWithNewValues(productKey) {
+  addCart(productKey);
+  const update = createProductObject(productKey);
+  addOrUpdateProductInStorage(update, productKey);
+  putTotalValueInInput();
+}
+
 function createProductControlsDiv(productKey, productInitialQuantity) {
   let rowDiv = document.createElement('div');
   rowDiv.classList.add('row');
@@ -118,6 +125,7 @@ function createProductControlsDiv(productKey, productInitialQuantity) {
   decrementBtn.appendChild(decrementBtnContent);
   decrementBtn.addEventListener('click', () => {
     decrementQuantityProduct(ID_INPUT);
+    updateUIWithNewValues(productKey);
   });
 
   //Botão de incremento
@@ -126,18 +134,7 @@ function createProductControlsDiv(productKey, productInitialQuantity) {
   incrementBtn.appendChild(incrementBtnContent);
   incrementBtn.addEventListener('click', () => {
     incrementQuantityProduct(ID_INPUT);
-  });
-
-  //Botão de Atualizar
-  let updateBtn = document.createElement('button');
-  updateBtn.classList.add('button-add');
-  const updateBtnContent = document.createTextNode('Atualizar');
-  updateBtn.appendChild(updateBtnContent);
-  updateBtn.addEventListener('click', () => {
-    addCart(productKey);
-    const update = createProductObject(productKey);
-    addOrUpdateProductInStorage(update, productKey)
-    document.location.reload();
+    updateUIWithNewValues(productKey);
   });
 
   //Botão de remover
@@ -147,7 +144,8 @@ function createProductControlsDiv(productKey, productInitialQuantity) {
   removeBtn.appendChild(removeBtnContent);
   removeBtn.addEventListener('click', () => {
     deleteProductOnStorage(productKey);
-    document.location.reload();
+    document.getElementById(productKey).remove();
+    putTotalValueInInput();
   });
 
   buttonQuantityDiv.appendChild(decrementBtn);
@@ -155,7 +153,6 @@ function createProductControlsDiv(productKey, productInitialQuantity) {
   buttonQuantityDiv.appendChild(incrementBtn);
 
   rowDiv.appendChild(buttonQuantityDiv);
-  rowDiv.appendChild(updateBtn);
   rowDiv.appendChild(removeBtn);
 
   return rowDiv;
@@ -202,6 +199,7 @@ function createRequestObject() {
     totalValue: '',
     paymentForm: '',
     deliveryWay: '',
+    district: '',
     address: '',
     deliveryFee: 0,
     observation: '',
@@ -246,11 +244,53 @@ function createRequestObject() {
   const deliveryFee = document.getElementById('delivery-fee-select').value;
   const deliverySplit = String(deliveryFee).split('|');
   requestObject.deliveryFee = deliverySplit[1];
+  requestObject.district = deliverySplit[0];
 
   const address = document.getElementById('delivery-address-textarea').value;
-  requestObject.address = deliverySplit[0] + " " + address;
+  requestObject.address = address;
 
   return requestObject;
+}
+
+function validationFields(cart) {
+  if(cart === undefined || cart.products.length === 0) {
+    alert('Por favor, escolha alguns produtos!');
+    return false;
+  }
+
+  if((cart.address === '' || cart.address === null) && cart.deliveryWay === 'entrega') {
+    alert('Por favor, escreva o endereço de entrega!');
+    return false;
+  }
+
+  if(cart.district === '' && cart.deliveryWay === 'entrega') {
+    alert('Por favor, escolha o seu bairro!');
+    return false;
+  }
+
+  return true;
+}
+
+function generateProductsString(cart) {
+  let products = cart.products.map(product => {
+    return `${ product.name } (${ product.quantity } uni) * `
+  })
+
+  let string = "";
+  string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
+
+  if(cart.deliveryWay === 'entrega') {
+    string += `*Endereço de entrega:* ${ cart.address } \r\n`;
+    string += `*Bairro para entrega:* ${ cart.district } \r\n`;
+    string += `*Taxa de entrega:* ${ Number(cart.deliveryFee).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) } \r\n`;
+  }
+
+  string += `*Forma de pagamento:* ${ cart.paymentForm } \r\n`
+  string += `*Valor total:* ${ cart.totalValue } \r\n`
+  string += `*Produtos:* ${ products.toString() }\n`
+  string += `*Observações:* ${ cart.observation }\n`
+
+  return window.encodeURIComponent(string);
 }
 
 /* Events --------------------------------------- */
@@ -266,44 +306,11 @@ document.getElementById('delivery-way-retirada').addEventListener('click', () =>
 
 document.getElementById('btn-delivery').addEventListener('click', () => {
   const cart = createRequestObject();
-
-  if(cart === undefined || cart.products.length === 0) {
-    alert('Por favor, escolha alguns produtos!');
-    return;
-  }
-
-  if((cart.address === '' || cart.address === null) && cart.deliveryWay === 'entrega') {
-    alert('Por favor, escreva o endereço de entrega!');
-    return;
-  }
-
-  if(cart.deliveryFee === 0 && cart.deliveryWay === 'entrega') {
-    alert('Por favor, escolha o seu bairro!');
-    return;
-  }
-
-  let products = cart.products.map(product => {
-    return `${ product.name } (${ product.quantity } uni)`
-  })
-
-  let string = "";
-  string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
-
-  if(cart.deliveryWay === 'entrega') {
-    string += `*Endereço de entrega:* ${ cart.address } \r\n`;
-
-    string += `*Taxa de entrega:* ${ Number(cart.deliveryFee).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) } \r\n`;
-  }
-
-  string += `*Forma de pagamento:* ${ cart.paymentForm } \r\n`
-
-  string += `*Valor total:* ${ cart.totalValue } \r\n`
-
-  string += `*Produtos:* ${ products.toString().replace(',', ' / ') }\n`
-
-  string += `*Observações:* ${ cart.observation }\n`
-
-  const href = 'https://api.whatsapp.com/send?phone=5513988282873&text=' + window.encodeURIComponent(string);
+  const isValid = validationFields(cart);
+  if(!isValid) { return; }
+  const string = generateProductsString(cart);
+  const href = 'https://api.whatsapp.com/send?phone=5513988282873&text=' + string;
+  localStorage.clear();
   window.open(href, "_blank");
 });
 

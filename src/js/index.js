@@ -1,5 +1,4 @@
 /* Modal --------------------------------------- */
-
 function openImage(src, caption) {
   var modal = document.getElementById("myModal");
   var modalImg = document.getElementById("img01");

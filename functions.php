@@ -35,7 +35,6 @@ function netto_pastelaria_register_products()
         'name' => __('Cardápio'),
         'add_new' => __('Adicionar produtos'),
       ),
-
       'public' => true,
       'has_archive' => false,
       'menu_icon' => 'dashicons-food',

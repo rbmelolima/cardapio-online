@@ -10,285 +10,88 @@
 
   <?php require_once('includes/header.php'); ?>
 
-  <div class="categories-products-sticky">
-    <div class="content app-width">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><a href="#pastel" class="active">Pastel</a></div>
-          <div class="swiper-slide"><a href="#bebidas">Bebidas</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php require_once('includes/categories_products.php'); ?>
 
   <main class="app-width">
-    <section id="pastel" class="section-products">
-      <h3>Pastel</h3>
+    <?php
+    function returnProductCorrectLoop($category_slug)
+    {
+      //Criando um loop para cada produto de acordo com sua categoria
+      $loop = new WP_Query(array(
+        'post_type' => 'products',
+        'category_name' => $category_slug,
+        'posts_per_page' => 999,
+      ));
+      return $loop;
+    }
 
-      <div class="container-product" id="product-key-x-salada">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
+    try {
+      //Pegando todas as categorias
+      $args = array(
+        'echo' => false,
+        'taxonomy' => 'category',
+        'orderby' => 'ASC'
+      );
 
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">X-Salada</strong>
-              <p class="description-product">Hambúrguer, alface, tomate, cheddar</p>
+      $menu = get_categories($args);
+
+      foreach ($menu as $item_menu) {
+        if ($item_menu->slug == 'sem-categoria') continue;
+
+        //Criando as seções de produtos
+        echo "<section id='" . $item_menu->slug . "' class='section-products'>";
+        echo "<h3>" . $item_menu->name . "</h3>";
+    ?>
+
+        <?php
+        //Renderizando os produtos da categoria atual do array
+        $loop_product = returnProductCorrectLoop($item_menu->slug);
+        if (have_posts()) : while ($loop_product->have_posts()) : $loop_product->the_post();
+            //Criando chaves únicas para os produtos e seus inputs
+            $random = substr(md5(uniqid("")), 0, 8);
+            $_product_key = "product-key-" . $random;
+            $_input_key = "input-key-" . $random;
+        ?>
+            <div class="container-product" id="<?= $_product_key ?>">
+              <div class="row">
+                <div class="image-product" onclick="openImage('<?= the_field('custom_wp_image_product') ?>', '<?= the_field('custom_wp_name_product') ?>')" style="background-image: url('<?= the_field('custom_wp_image_product') ?>');">
+                </div>
+
+                <div class="content-product">
+                  <div class="description">
+                    <strong class="name-product"><?= the_field('custom_wp_name_product') ?></strong>
+                    <p class="description-product"><?= the_field('custom_wp_description_product') ?></p>
+                  </div>
+                </div>
+
+                <div class="information">
+                  <p class="price">R$ 7,00</p>
+                </div>
+              </div>
+              <div class="row controls">
+                <div class="button-quantity-container">
+                  <button onclick="decrementQuantityProduct('<?= $_input_key ?>')">-</button>
+                  <input class="quantity" type="text" disabled value="1" id="<?= $_input_key ?>">
+                  <button onclick="incrementQuantityProduct('<?= $_input_key ?>')">+</button>
+                </div>
+                <button class="button-add" onclick="addCart('<?= $_product_key ?>')">Adicionar</button>
+              </div>
             </div>
-          </div>
 
-          <div class="information">
-            <p class="price">R$ 7,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-87897897')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-87897897">
-            <button onclick="incrementQuantityProduct('input-key-hash-87897897')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-x-salada')">Adicionar</button>
-        </div>
-      </div>
+            <?php wp_reset_query(); ?>
+          <?php endwhile; ?>
+        <?php endif; ?>
+    <?php
+        echo "</section>";
+      }
 
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="bebidas" class="section-products">
-      <h3>Bebidas</h3>
-
-      <div class="container-product" id="product-key-x-salada">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'X-Salada')" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">X-Salada</strong>
-              <p class="description-product">Hambúrguer, alface, tomate, cheddar</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 7,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-87897897')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-87897897">
-            <button onclick="incrementQuantityProduct('input-key-hash-87897897')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-x-salada')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-
-      <div class="container-product" id="product-key-pizza-mussarela">
-        <div class="row">
-          <div class="image-product" onclick="openImage('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80', 'Pizza de mussarela')" style="background-image: url('https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
-          </div>
-
-          <div class="content-product">
-            <div class="description">
-              <strong class="name-product">Pizza de mussarela</strong>
-              <p class="description-product">Mussarela, tomate, orégano</p>
-            </div>
-          </div>
-
-          <div class="information">
-            <p class="price">R$ 22,00</p>
-          </div>
-        </div>
-        <div class="row controls">
-          <div class="button-quantity-container">
-            <button onclick="decrementQuantityProduct('input-key-hash-5614')">-</button>
-            <input class="quantity" type="text" disabled value="1" id="input-key-hash-5614">
-            <button onclick="incrementQuantityProduct('input-key-hash-5614')">+</button>
-          </div>
-          <button class="button-add" onclick="addCart('product-key-pizza-mussarela')">Adicionar</button>
-        </div>
-      </div>
-    </section>
+      unset($index);
+      unset($menu);
+      unset($item_menu);
+    } catch (Exception $e) {
+      echo "<p> Falha ao carregar os produtos, recarregue a página! </p>";
+    }
+    ?>
   </main>
 
   <footer></footer>

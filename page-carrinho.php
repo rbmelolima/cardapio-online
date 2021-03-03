@@ -42,19 +42,18 @@
       <h4>Como você quer receber seu pedido?</h4>
       <div class="wrapper-radio">
         <input type="radio" id="delivery-way-retirada" name="delivery-way-radio" value="retirada" checked>
-        <label for="retirada">Vou até o local retirar.</label>
+        <label for="delivery-way-retirada">Vou até o local retirar.</label>
       </div>
       <div class="wrapper-radio">
         <input type="radio" id="delivery-way-entrega" name="delivery-way-radio" value="entrega">
-        <label for="entrega">Quero receber via delivery!</label>
+        <label for="delivery-way-entrega">Quero receber via delivery!</label>
       </div>
     </section>
 
     <section class="delivery-fee-section hidden" id="delivery-fee-section">
       <h4>Taxa de entrega</h4>
       <select name="delivery-fee-select" class="delivery-fee-select" id="delivery-fee-select">
-        <option disabled selected>Selecione o seu bairro</option>
-        <option value="Humaitá|<?= $wp_delivery_humaita ?>">Humaitá - R$
+        <option selected value="Humaitá|<?= $wp_delivery_humaita ?>">Humaitá - R$
           <?= $price_delivery_humaita ?>
         </option>
         <option value="Área Continental|<?= $wp_delivery_continental ?>">Área Continental - R$
