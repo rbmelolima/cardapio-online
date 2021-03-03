@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const makeActive = (link) => menu_links[link].classList.add("active");
   const removeActive = (link) => menu_links[link].classList.remove("active");
   const removeAllActive = () => [...Array(sections.length).keys()].forEach((link) => removeActive(link));
-  const sectionMargin = 200;
+  const sectionMargin = 100;
   let currentActive = 0;
 
   window.addEventListener("scroll", () => {
