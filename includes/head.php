@@ -17,7 +17,8 @@
 $wp_background;
 $wp_logo;
 $wp_opening_hours;
-$wp_delivery_fee;
+$wp_delivery_humaita;
+$wp_delivery_continental;
 $wp_payment_methods;
 $wp_address;
 $wp_facebook;
@@ -33,12 +34,17 @@ while ($loop->have_posts()) :  $loop->the_post();
   $wp_background = get_field('custom_wp_background');
   $wp_logo = get_field('custom_wp_logo');
   $wp_opening_hours = get_field('custom_wp_opening_hours');
-  $wp_delivery_fee = get_field('custom_wp_delivery_fee');
+  $wp_delivery_humaita = get_field('custom_wp_delivery_humaita');
+  $wp_delivery_continental = get_field('custom_wp_delivery_continental');
   $wp_payment_methods = get_field('custom_wp_payment_methods');
   $wp_address = get_field('custom_wp_address');
   $wp_facebook = get_field('custom_wp_facebook');
   $wp_instagram = get_field('custom_wp_instagram');
   $wp_whatsapp = get_field('custom_wp_whatsapp');
 endwhile;
+
+$price_delivery_humaita = number_format($wp_delivery_humaita, 2, ',', '');
+$price_delivery_continental = number_format($wp_delivery_continental, 2, ',', '');
+
 wp_reset_query();
 ?>

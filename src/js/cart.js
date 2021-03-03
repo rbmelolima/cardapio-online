@@ -193,8 +193,8 @@ function getTotalValue() {
 
 function putTotalValueInInput() {
   let input = document.getElementById('total-value-input');
-  const formatedPrice = parseFloat(getTotalValue()).toFixed(2).replace('.', ',');
-  input.value = `R$ ${ formatedPrice }`;
+  const formatedPrice = Number(getTotalValue()).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+  input.value = formatedPrice;
 }
 
 function createRequestObject() {
@@ -203,12 +203,15 @@ function createRequestObject() {
     paymentForm: '',
     deliveryWay: '',
     address: '',
+    deliveryFee: 0,
     observation: '',
     products: []
   };
 
   const allProducts = returnAllProductsOnStorage();
+
   if(allProducts === null || allProducts.length === 0) { return; }
+
   allProducts.forEach((product) => {
     const json = JSON.parse(product);
 
@@ -233,14 +236,19 @@ function createRequestObject() {
   const paymentForm = document.getElementById('payment-forms-select').value;
   requestObject.paymentForm = paymentForm;
 
-  const address = document.getElementById('delivery-address-textarea').value;
-  requestObject.address = address;
-
   const observation = document.getElementById('observation-textarea').value;
   requestObject.observation = observation;
 
   const deliveryWay = document.querySelector('input[name="delivery-way-radio"]:checked').value;
   requestObject.deliveryWay = deliveryWay;
+
+  //Example: Humaitá|2
+  const deliveryFee = document.getElementById('delivery-fee-select').value;
+  const deliverySplit = String(deliveryFee).split('|');
+  requestObject.deliveryFee = deliverySplit[1];
+
+  const address = document.getElementById('delivery-address-textarea').value;
+  requestObject.address = deliverySplit[0] + " " + address;
 
   return requestObject;
 }
@@ -248,10 +256,12 @@ function createRequestObject() {
 /* Events --------------------------------------- */
 document.getElementById('delivery-way-entrega').addEventListener('click', () => {
   document.getElementById('delivery-address-section').classList.remove('hidden');
+  document.getElementById('delivery-fee-section').classList.remove('hidden');
 });
 
 document.getElementById('delivery-way-retirada').addEventListener('click', () => {
   document.getElementById('delivery-address-section').classList.add('hidden');
+  document.getElementById('delivery-fee-section').classList.add('hidden');
 });
 
 document.getElementById('btn-delivery').addEventListener('click', () => {
@@ -260,10 +270,15 @@ document.getElementById('btn-delivery').addEventListener('click', () => {
   if(cart === undefined || cart.products.length === 0) {
     alert('Por favor, escolha alguns produtos!');
     return;
-  } 
+  }
 
   if((cart.address === '' || cart.address === null) && cart.deliveryWay === 'entrega') {
     alert('Por favor, escreva o endereço de entrega!');
+    return;
+  }
+
+  if(cart.deliveryFee === 0 && cart.deliveryWay === 'entrega') {
+    alert('Por favor, escolha o seu bairro!');
     return;
   }
 
@@ -273,10 +288,19 @@ document.getElementById('btn-delivery').addEventListener('click', () => {
 
   let string = "";
   string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
-  if(cart.deliveryWay === 'entrega') { string += `*Endereço de entrega:* ${ cart.address } \r\n`; }
+
+  if(cart.deliveryWay === 'entrega') {
+    string += `*Endereço de entrega:* ${ cart.address } \r\n`;
+
+    string += `*Taxa de entrega:* ${ Number(cart.deliveryFee).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) } \r\n`;
+  }
+
   string += `*Forma de pagamento:* ${ cart.paymentForm } \r\n`
+
   string += `*Valor total:* ${ cart.totalValue } \r\n`
+
   string += `*Produtos:* ${ products.toString().replace(',', ' / ') }\n`
+
   string += `*Observações:* ${ cart.observation }\n`
 
   const href = 'https://api.whatsapp.com/send?phone=5513988282873&text=' + window.encodeURIComponent(string);

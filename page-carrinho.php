@@ -50,6 +50,21 @@
       </div>
     </section>
 
+    <section class="delivery-fee-section hidden" id="delivery-fee-section">
+      <h4>Taxa de entrega</h4>
+      <select name="delivery-fee-select" class="delivery-fee-select" id="delivery-fee-select">
+        <option disabled selected>Selecione o seu bairro</option>
+        <option value="Humaitá|<?= $wp_delivery_humaita ?>">Humaitá - R$
+          <?= $price_delivery_humaita ?>
+        </option>
+        <option value="Área Continental|<?= $wp_delivery_continental ?>">Área Continental - R$
+          <?= $price_delivery_continental ?>
+        </option>
+
+      </select>
+
+    </section>
+
     <section class="delivery-address-section hidden" id="delivery-address-section">
       <h4>Endereço de entrega</h4>
       <textarea class="delivery-address-textarea textarea" id="delivery-address-textarea" placeholder="Escreva seu endereço para que possamos fazer a entrega."></textarea>
