@@ -308,8 +308,10 @@ document.getElementById('btn-delivery').addEventListener('click', () => {
   const cart = createRequestObject();
   const isValid = validationFields(cart);
   if(!isValid) { return; }
+
   const string = generateProductsString(cart);
-  const href = 'https://api.whatsapp.com/send?phone=5513988282873&text=' + string;
+  const owner_zap = document.getElementById('btn-delivery').value;
+  const href = `https://api.whatsapp.com/send?phone=${ owner_zap }&text=` + string;
   localStorage.clear();
   window.open(href, "_blank");
 });

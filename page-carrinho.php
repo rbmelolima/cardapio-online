@@ -75,7 +75,7 @@
     </section>
 
     <section>
-      <button class="btn-delivery" id="btn-delivery">Pedir via Whatsapp</button>
+      <button class="btn-delivery" id="btn-delivery" value="<?= $wp_whatsapp ?>">Pedir via Whatsapp</button>
     </section>
   </main>
 
