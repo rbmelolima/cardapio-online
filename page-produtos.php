@@ -92,9 +92,10 @@
       echo "<p> Falha ao carregar os produtos, recarregue a página! </p>";
     }
     ?>
-  </main>
 
-  <footer></footer>
+    <?php require_once('includes/footer.php'); ?>
+
+  </main>
 
   <!-- Scripts -->
   <script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>

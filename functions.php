@@ -64,7 +64,6 @@ add_action('init', 'netto_pastelaria_register_products');
 add_action('admin_menu', 'netto_pastelaria_remove_menu_pages');
 add_filter('admin_footer_text', 'netto_pastelaria_custom_footer_admin');
 
-
 if (function_exists('acf_add_local_field_group')) :
   acf_add_local_field_group(array(
     'key' => 'group_6036e6f4af656',
@@ -216,30 +215,6 @@ if (function_exists('acf_add_local_field_group')) :
         'mime_types' => '',
       ),
       array(
-        'key' => 'field_6036e353aa806',
-        'label' => 'Logo',
-        'name' => 'custom_wp_logo',
-        'type' => 'image',
-        'instructions' => 'Insira o logo que você deseja mostrar no site. *(Qualquer logo será ligeiramente torto para a direita.)',
-        'required' => 1,
-        'conditional_logic' => 0,
-        'wrapper' => array(
-          'width' => '',
-          'class' => '',
-          'id' => '',
-        ),
-        'return_format' => 'url',
-        'preview_size' => 'medium',
-        'library' => 'all',
-        'min_width' => '',
-        'min_height' => '',
-        'min_size' => '',
-        'max_width' => '',
-        'max_height' => '',
-        'max_size' => '',
-        'mime_types' => '',
-      ),
-      array(
         'key' => 'field_6036e3a3aa807',
         'label' => 'Horário de funcionamento',
         'name' => 'custom_wp_opening_hours',
@@ -284,7 +259,7 @@ if (function_exists('acf_add_local_field_group')) :
         'label' => 'Taxa de entrega para o Continental',
         'name' => 'custom_wp_delivery_continental',
         'type' => 'number',
-        'instructions' => 'Digite o preço da taxa de entrega para o Humaitá',
+        'instructions' => 'Digite o preço da taxa de entrega para o Continental',
         'required' => 1,
         'conditional_logic' => 0,
         'wrapper' => array(

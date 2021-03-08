@@ -56,7 +56,7 @@
         <option selected value="Humaitá|<?= $wp_delivery_humaita ?>">Humaitá - R$
           <?= $price_delivery_humaita ?>
         </option>
-        <option value="Área Continental|<?= $wp_delivery_continental ?>">Área Continental - R$
+        <option value="Continental|<?= $wp_delivery_continental ?>">Continental - R$
           <?= $price_delivery_continental ?>
         </option>
 
@@ -77,9 +77,9 @@
     <section>
       <button class="btn-delivery" id="btn-delivery" value="<?= $wp_whatsapp ?>">Pedir via Whatsapp</button>
     </section>
-  </main>
 
-  <footer></footer>
+    <?php require_once('includes/footer.php'); ?>
+  </main>
 </body>
 
 <!-- Scripts -->

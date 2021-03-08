@@ -3,7 +3,6 @@
   <meta name="author" content="@rbmelolima" />
   <meta name="description" content="<?php bloginfo('description'); ?>" />
   <meta name="keywords" content="<?php bloginfo('tags'); ?>">
-  <link rel="shortcut icon" href="" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -15,7 +14,6 @@
 
 <?php
 $wp_background;
-$wp_logo;
 $wp_opening_hours;
 $wp_delivery_humaita;
 $wp_delivery_continental;
@@ -32,7 +30,6 @@ $loop = new WP_Query(array(
 ));
 while ($loop->have_posts()) :  $loop->the_post();
   $wp_background = get_field('custom_wp_background');
-  $wp_logo = get_field('custom_wp_logo');
   $wp_opening_hours = get_field('custom_wp_opening_hours');
   $wp_delivery_humaita = get_field('custom_wp_delivery_humaita');
   $wp_delivery_continental = get_field('custom_wp_delivery_continental');

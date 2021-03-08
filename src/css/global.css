@@ -2,25 +2,26 @@
   --background: #fafafa;
   --text-primary: #000000;
   --text-secundary: #424242;
-  --red: #FC0202;
-  --green: #0ACF83;
+  --red: #fc0202;
+  --green: #0acf83;
+  --primary: #ff8e00;
   --whatsapp: #25d366;
-  --facebook: #3B5998;
-  --instagram: linear-gradient(225.4deg, #7A2C9E 0%, #DD5789 59.47%, #FEDC2A 93.59%);
-  --chip-color: #E7E7E7;
-  font-size: 100%;  
+  --facebook: #3b5998;
+  --instagram: linear-gradient(225.4deg, #7a2c9e 0%, #dd5789 59.47%, #fedc2a 93.59%);
+  --chip-color: #e7e7e7;
+  font-size: 100%;
 }
 
 @media screen and (min-width: 1024px) {
-  :root {   
-    font-size: 110%;  
+  :root {
+    font-size: 110%;
   }
 }
 
 /* HTML ELEMENTS  ------------------------------------------------ */
 body {
   width: 100%;
-  max-width: 100%;  
+  max-width: 100%;
   min-height: 100vh;
   background-color: var(--background);
   position: relative;
@@ -31,7 +32,7 @@ main {
   position: relative;
   padding: 0 1rem 5rem 1rem;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 
 main > section {
@@ -64,7 +65,7 @@ button {
 .app-width {
   max-width: 50rem;
   width: 100%;
-  margin: 0 auto;      
+  margin: 0 auto;
 }
 
 .row {
@@ -104,7 +105,7 @@ button {
 .payment-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;  
+  justify-content: flex-start;
 }
 
 .payment-container .payment-chip {
@@ -121,14 +122,12 @@ button {
 
 /* Redes sociais */
 .social-media-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
-.social-media-facebook,
-.social-media-instagram {
-  width: 100%;
+.social-media-container a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,31 +136,43 @@ button {
   min-height: 8rem;
 }
 
-.social-media-facebook {
-  background: var(--facebook);
+.social-media-container a img {
+  width: 2rem;
+  height: auto;
 }
 
-.social-media-instagram  {
+.social-media-facebook {
+  background: var(--facebook);
+  flex: 1;
+}
+
+.social-media-instagram {
   background: var(--instagram);
+  flex: 1;
+}
+
+.social-media-whatsapp {
+  background: var(--whatsapp);
+  width: 100%;
 }
 
 header {
   width: 100%;
 }
 
-header .image{
-  width: 100%;  
+header .image {
+  width: 100%;
   z-index: 1;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 20rem; 
+  height: 20rem;
 }
 
 header .overlay-black {
   width: 100%;
-  height: 100%;  
-  z-index: 2;  
+  height: 100%;
+  z-index: 2;
   background: rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
@@ -175,20 +186,31 @@ header .content img {
   transform: rotate(30deg);
 }
 
-header .content h1{
+header .content h1 {
   display: none;
+}
+
+@media screen and (max-width: 576px) {
+  header .image {
+    height: 15rem;
+  }
+
+  header .content img {
+    max-width: 15rem;
+  }
 }
 
 .bottomNavigationBar {
   position: fixed;
   bottom: 0;
-  background: #FFFFFF;
-  box-shadow: 0px 9.28571px 11.6071px rgba(0, 0, 0, 0.14), 0px 3.48214px 16.25px rgba(0, 0, 0, 0.12), 0px 5.80357px 5.80357px rgba(0, 0, 0, 0.2);
+  background: var(--primary);
+  box-shadow: 0px 9.28571px 11.6071px rgba(0, 0, 0, 0.14), 0px 3.48214px 16.25px rgba(0, 0, 0, 0.12),
+    0px 5.80357px 5.80357px rgba(0, 0, 0, 0.2);
   z-index: 99;
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 4.0rem;
+  height: 4rem;
 }
 
 .bottomNavigationBar .center {
@@ -211,32 +233,36 @@ header .content h1{
   transition: all 0.3s linear;
   outline: none;
   text-decoration: none;
+  flex-direction: column;
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 .bottomNavigationBar a:active,
 .bottomNavigationBar a:hover {
-  background-color: #dfdfdf;
+  background-color: #d47600;
 }
 
 /*Modal*/
 .modal {
-  display: none; 
-  position: fixed; 
-  z-index: 99; 
-  padding-top: 100px; 
+  display: none;
+  position: fixed;
+  z-index: 99;
+  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.9);
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Modal Content (Image) */
 .modal-content {
   margin: auto;
-  display: block; 
+  display: block;
   max-width: 700px;
   width: 80%;
 }
@@ -254,14 +280,19 @@ header .content h1{
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+.modal-content,
+#caption {
   animation-name: zoom;
   animation-duration: 0.6s;
 }
 
 @keyframes zoom {
-  from {transform:scale(0)}
-  to {transform:scale(1)}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* The Close Button */
@@ -282,8 +313,25 @@ header .content h1{
   cursor: pointer;
 }
 
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
   .modal-content {
     width: 95%;
   }
+}
+
+/*Footer*/
+footer {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ff8e00;
+  font-weight: bold;
 }

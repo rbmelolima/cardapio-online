@@ -4,8 +4,6 @@
 <?php require_once('includes/head.php'); ?>
 
 <body>
-  <?php require_once('includes/whatsapp_button.php'); ?>
-
   <?php require_once('includes/bottom_navigation.php'); ?>
 
   <?php require_once('includes/header.php'); ?>
@@ -20,7 +18,7 @@
       <h3>Taxa de entrega</h3>
       <p><strong>Humaitá: </strong>R$ <?= $price_delivery_humaita ?></p>
 
-      <p><strong>Área continental: </strong>R$ <?= $price_delivery_continental ?></p>
+      <p><strong>Continental: </strong>R$ <?= $price_delivery_continental ?></p>
     </section>
 
     <section>
@@ -54,11 +52,14 @@
         <a class="social-media-instagram" href="<?= $wp_instagram ?>">
           <img src="<?php bloginfo('template_url'); ?>/src/images/instagram.svg" alt="Instagram">
         </a>
+        <a class="social-media-whatsapp" href="https://api.whatsapp.com/send?phone=<?= $wp_whatsapp ?>" title="<?= $wp_whatsapp ?>">
+          <img src="<?php bloginfo('template_url'); ?>/src/images/whatsapp.svg" alt="Whatsapp" />
+        </a>
       </div>
     </section>
-  </main>
 
-  <footer></footer>
+    <?php require_once('includes/footer.php'); ?>
+  </main>
 </body>
 
 </html>

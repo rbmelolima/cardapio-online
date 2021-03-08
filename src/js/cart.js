@@ -271,10 +271,18 @@ function validationFields(cart) {
   return true;
 }
 
+function formatArrayProductInString(cart) {
+  let string = '';
+
+  cart.products.forEach(product => {
+    string += `- ${ product.name } ${ product.quantity } unidade(s) \n\r`;
+  });
+
+  return string;
+}
+
 function generateProductsString(cart) {
-  let products = cart.products.map(product => {
-    return `${ product.name } (${ product.quantity } uni) * `
-  })
+  const products = formatArrayProductInString(cart);
 
   let string = "";
   string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
@@ -287,7 +295,7 @@ function generateProductsString(cart) {
 
   string += `*Forma de pagamento:* ${ cart.paymentForm } \r\n`
   string += `*Valor total:* ${ cart.totalValue } \r\n`
-  string += `*Produtos:* ${ products.toString() }\n`
+  string += `*Produtos:* \n${ products }\n`
   string += `*Observações:* ${ cart.observation }\n`
 
   return window.encodeURIComponent(string);
