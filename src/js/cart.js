@@ -275,7 +275,7 @@ function formatArrayProductInString(cart) {
   let string = '';
 
   cart.products.forEach(product => {
-    string += `- ${ product.name } ${ product.quantity } unidade(s) \n\r`;
+    string += `- ${ product.name }: ${ product.quantity } unidade(s) \n\r`;
   });
 
   return string;
@@ -287,15 +287,14 @@ function generateProductsString(cart) {
   let string = "";
   string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
 
-  if(cart.deliveryWay === 'entrega') {
+  if(cart.deliveryWay === 'Entrega') {
     string += `*Endereço de entrega:* ${ cart.address } \r\n`;
     string += `*Bairro para entrega:* ${ cart.district } \r\n`;
     string += `*Taxa de entrega:* ${ Number(cart.deliveryFee).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) } \r\n`;
   }
-
   string += `*Forma de pagamento:* ${ cart.paymentForm } \r\n`
   string += `*Valor total:* ${ cart.totalValue } \r\n`
-  string += `*Produtos:* \n${ products }\n`
+  string += `*Produtos:* \n${ products }`
   string += `*Observações:* ${ cart.observation }\n`
 
   return window.encodeURIComponent(string);

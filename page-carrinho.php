@@ -41,11 +41,15 @@
     <section class="delivery-away-section">
       <h4>Como você quer receber seu pedido?</h4>
       <div class="wrapper-radio">
-        <input type="radio" id="delivery-way-retirada" name="delivery-way-radio" value="retirada" checked>
+        <input type="radio" id="delivery-way-local" name="delivery-way-radio" value="Consumir no local" checked>
+        <label for="delivery-way-local">Vou consumir no estabelecimento.</label>
+      </div>
+      <div class="wrapper-radio">
+        <input type="radio" id="delivery-way-retirada" name="delivery-way-radio" value="Retirada">
         <label for="delivery-way-retirada">Vou até o local retirar.</label>
       </div>
       <div class="wrapper-radio">
-        <input type="radio" id="delivery-way-entrega" name="delivery-way-radio" value="entrega">
+        <input type="radio" id="delivery-way-entrega" name="delivery-way-radio" value="Entrega">
         <label for="delivery-way-entrega">Quero receber via delivery!</label>
       </div>
     </section>
