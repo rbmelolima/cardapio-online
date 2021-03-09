@@ -1,12 +1,29 @@
 # Netto pastelaria
+Aplicação para pastelaria utilizando Javascript e PHP (Wordpress).
 
-# To Do
+## Features
+- Informações sobre o estabelecimento
+- CRUD de produtos
+- Envio de informações de pedido para a API do Whatsapp
 
-## Instalação e configuração
-- Instalar o Wordpress
+## Instalação e modo de uso
+[Clique aqui para mais detalhes](https://github.com/rbmelolima/netto-pastelaria/wiki)
 
-- Instalar o Tema
+## Preview
+![Página inicial](./src/docs/home.png)
+<center>Página inicial</center>
 
-- Criar as páginas "produtos" e "carrinho"
+</br></br>
 
-- Instalar o Advanced Custom Fields
+![Página de produtos](./src/docs/produtos.png)
+<center>Página de produtos</center>
+
+</br></br>
+
+![Página de carrinho](./src/docs/carrinho.png)
+<center>Página de carrinho</center>
+
+</br></br>
+
+
+
