@@ -13,15 +13,15 @@
 </head>
 
 <?php
-$wp_background;
-$wp_opening_hours;
-$wp_delivery_humaita;
-$wp_delivery_continental;
-$wp_payment_methods;
-$wp_address;
-$wp_facebook;
-$wp_instagram;
-$wp_whatsapp;
+$wp_background = "";
+$wp_opening_hours = "";
+$wp_delivery_humaita = 0;
+$wp_delivery_continental = 0;
+$wp_payment_methods = "";
+$wp_address = "";
+$wp_facebook = "";
+$wp_instagram = "";
+$wp_whatsapp = "";
 
 $loop = new WP_Query(array(
   'post_type' => 'information',
