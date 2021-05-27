@@ -311,6 +311,12 @@ document.getElementById('delivery-way-retirada').addEventListener('click', () =>
   document.getElementById('delivery-fee-section').classList.add('hidden');
 });
 
+document.getElementById('delivery-way-local').addEventListener('click', () => {
+  document.getElementById('delivery-address-section').classList.add('hidden');
+  document.getElementById('delivery-fee-section').classList.add('hidden');
+});
+
+
 document.getElementById('btn-delivery').addEventListener('click', () => {
   const cart = createRequestObject();
   const isValid = validationFields(cart);
