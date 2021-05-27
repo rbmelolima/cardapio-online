@@ -1,11 +1,11 @@
 <!-- Barra de navegação inferior -->
 <div class="bottomNavigationBar">
   <div class="center">
-    <a href="/" title="Início">
-      <img src="<?php bloginfo('template_url'); ?>/src/images/home.svg" alt="Início">
-      <p>Início</p>
+    <a href="/sobre" title="Sobre">
+      <img src="<?php bloginfo('template_url'); ?>/src/images/info.svg" alt="Início">
+      <p>Sobre</p>
     </a>
-    <a href="/produtos" title="Produtos">
+    <a href="/" title="Produtos">
       <img src="<?php bloginfo('template_url'); ?>/src/images/product.svg" alt="Produtos">
       <p>Produtos</p>
     </a>

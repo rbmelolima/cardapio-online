@@ -6,60 +6,102 @@
 <body>
   <?php require_once('includes/bottom_navigation.php'); ?>
 
+  <?php require_once('includes/modal.php'); ?>
+
   <?php require_once('includes/header.php'); ?>
 
+  <?php require_once('includes/categories_products.php'); ?>
+
   <main class="app-width">
-    <section>
-      <h3>Horário de funcionamento</h3>
-      <?= $wp_opening_hours ?>
-    </section>
+    <?php
+    function returnProductCorrectLoop($category_slug)
+    {
+      //Criando um loop para cada produto de acordo com sua categoria
+      $loop = new WP_Query(array(
+        'post_type' => 'products',
+        'category_name' => $category_slug,
+        'posts_per_page' => 999,
+      ));
+      return $loop;
+    }
 
-    <section>
-      <h3>Taxa de entrega</h3>
-      <p><strong>Humaitá: </strong>R$ <?= $price_delivery_humaita ?></p>
+    try {
+      //Pegando todas as categorias
+      $args = array(
+        'echo' => false,
+        'taxonomy' => 'category',
+        'orderby' => 'ASC'
+      );
 
-      <p><strong>Continental: </strong>R$ <?= $price_delivery_continental ?></p>
-    </section>
+      $menu = get_categories($args);
 
-    <section>
-      <h3>Formas de pagamento</h3>
-      <div class="payment-container">
+      foreach ($menu as $item_menu) {
+        if ($item_menu->slug == 'sem-categoria') continue;
+
+        //Criando as seções de produtos
+        echo "<section id='" . $item_menu->slug . "' class='section-products'>";
+        echo "<h3>" . $item_menu->name . "</h3>";
+    ?>
+
         <?php
-        try {
-          $wp_payment_methods_array = explode(",", $wp_payment_methods);
-
-          foreach ($wp_payment_methods_array as $method) {
-            echo  "<span class=\"payment-chip\">" . $method . "</span>";
-          }
-        } catch (Exception $e) {
-          echo "<span class=\"payment-chip\"> Dinheiro</span>";
-        }
+        //Renderizando os produtos da categoria atual do array
+        $loop_product = returnProductCorrectLoop($item_menu->slug);
+        if (have_posts()) : while ($loop_product->have_posts()) : $loop_product->the_post();
+            //Criando chaves únicas para os produtos e seus inputs
+            $random = substr(md5(uniqid("")), 0, 8);
+            $_product_key = "product-key-" . $random;
+            $_input_key = "input-key-" . $random;
         ?>
-      </div>
-    </section>
+            <div class="container-product" id="<?= $_product_key ?>">
+              <div class="row">
+                <div class="image-product" onclick="openImage('<?= the_field('custom_wp_image_product') ?>', '<?= the_field('custom_wp_name_product') ?>')" style="background-image: url('<?= the_field('custom_wp_image_product') ?>');">
+                </div>
 
-    <section>
-      <h3>Endereço</h3>
-      <?= $wp_address ?>
-    </section>
+                <div class="content-product">
+                  <div class="description">
+                    <strong class="name-product"><?= the_field('custom_wp_name_product') ?></strong>
+                    <p class="description-product"><?= the_field('custom_wp_description_product') ?></p>
+                  </div>
+                </div>
 
-    <section>
-      <h3>Redes sociais</h3>
-      <div class="social-media-container">
-        <a class="social-media-facebook" href="<?= $wp_facebook ?>">
-          <img src="<?php bloginfo('template_url'); ?>/src/images/facebook.svg" alt="Facebook">
-        </a>
-        <a class="social-media-instagram" href="<?= $wp_instagram ?>">
-          <img src="<?php bloginfo('template_url'); ?>/src/images/instagram.svg" alt="Instagram">
-        </a>
-        <a class="social-media-whatsapp" href="https://api.whatsapp.com/send?phone=<?= $wp_whatsapp ?>" title="<?= $wp_whatsapp ?>">
-          <img src="<?php bloginfo('template_url'); ?>/src/images/whatsapp.svg" alt="Whatsapp" />
-        </a>
-      </div>
-    </section>
+                <div class="information">
+                  <p class="price">R$ 7,00</p>
+                </div>
+              </div>
+              <div class="row controls">
+                <div class="button-quantity-container">
+                  <button onclick="decrementQuantityProduct('<?= $_input_key ?>')">-</button>
+                  <input class="quantity" type="text" disabled value="1" id="<?= $_input_key ?>">
+                  <button onclick="incrementQuantityProduct('<?= $_input_key ?>')">+</button>
+                </div>
+                <button class="button-add" onclick="addCart('<?= $_product_key ?>')">Adicionar</button>
+              </div>
+            </div>
+
+            <?php wp_reset_query(); ?>
+          <?php endwhile; ?>
+        <?php endif; ?>
+    <?php
+        echo "</section>";
+      }
+
+      unset($index);
+      unset($menu);
+      unset($item_menu);
+    } catch (Exception $e) {
+      echo "<p> Falha ao carregar os produtos, recarregue a página! </p>";
+    }
+    ?>
 
     <?php require_once('includes/footer.php'); ?>
+
   </main>
+
+  <!-- Scripts -->
+  <script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/src/js/products.js"></script>
+
 </body>
 
 </html>
