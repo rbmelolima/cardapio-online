@@ -20,7 +20,7 @@
       $loop = new WP_Query(array(
         'post_type' => 'products',
         'category_name' => $category_slug,
-        'posts_per_page' => 999,
+        'posts_per_page' => 9999,
       ));
       return $loop;
     }
