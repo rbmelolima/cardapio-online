@@ -124,7 +124,6 @@ button {
 .social-media-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .social-media-container a {
@@ -144,14 +143,17 @@ button {
 .social-media-facebook {
   background: var(--facebook);
   flex: 1;
+  margin-right: 0.5rem;
 }
 
 .social-media-instagram {
   background: var(--instagram);
+  margin-left: 0.5rem;
   flex: 1;
 }
 
 .social-media-whatsapp {
+  margin-top: 1rem;
   background: var(--whatsapp);
   width: 100%;
 }
