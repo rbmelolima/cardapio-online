@@ -1,9 +1,11 @@
+// Inicializando o Swiper
 const swiper = new Swiper('.categories-products-sticky .swiper-container', {
   direction: 'horizontal',
   slidesPerView: 'auto',
   spaceBetween: 32
 });
 
+// Carregando o JS responsável pelo efeito de âncoras na página de produtos
 document.addEventListener('DOMContentLoaded', function () {
   const sections = document.querySelectorAll(".section-products");
   const menu_links = document.querySelectorAll(".swiper-slide a");

@@ -1,6 +1,6 @@
-/* Render html of the products in the cart --------------------------------------- */
 loadCart();
 
+/* Renderizando no HTML os produtos do carrinho --------------------------------------- */
 function loadCart() {
   let cartProductsContainer = document.getElementById('cart-products-container');
   if(cartProductsContainer === null) { return; }
@@ -22,6 +22,7 @@ function loadCart() {
   putTotalValueInInput();
 }
 
+/* Funções que criam o HTML dos produtos no carrinho --------------------------------------- */
 function createProductsInHtml(cartProductsContainer, productKey) {
   if(cartProductsContainer === null) { throw "A div de produtos do carrinho não foi encontrada!" }
   cartProductsContainer.appendChild(createProductDiv(productKey));
@@ -95,13 +96,6 @@ function createProductInformationDiv(nameProduct, descriptionProduct, priceProdu
   return rowDiv;
 }
 
-function updateUIWithNewValues(productKey) {
-  addCart(productKey);
-  const update = createProductObject(productKey);
-  addOrUpdateProductInStorage(update, productKey);
-  putTotalValueInInput();
-}
-
 function createProductControlsDiv(productKey, productInitialQuantity) {
   let rowDiv = document.createElement('div');
   rowDiv.classList.add('row');
@@ -156,6 +150,13 @@ function createProductControlsDiv(productKey, productInitialQuantity) {
   rowDiv.appendChild(removeBtn);
 
   return rowDiv;
+}
+
+function updateUIWithNewValues(productKey) {
+  addCart(productKey);
+  const update = createProductObject(productKey);
+  addOrUpdateProductInStorage(update, productKey);
+  putTotalValueInInput();
 }
 
 function getTotalValue() {
@@ -240,7 +241,7 @@ function createRequestObject() {
   const deliveryWay = document.querySelector('input[name="delivery-way-radio"]:checked').value;
   requestObject.deliveryWay = deliveryWay;
 
-  //Example: Humaitá|2
+  //Exemplo: Humaitá|2
   const deliveryFee = document.getElementById('delivery-fee-select').value;
   const deliverySplit = String(deliveryFee).split('|');
   requestObject.deliveryFee = deliverySplit[1];
@@ -253,6 +254,8 @@ function createRequestObject() {
 }
 
 function validationFields(cart) {
+  console.info(cart);
+
   if(cart === undefined || cart.products.length === 0) {
     alert('Por favor, escolha alguns produtos!');
     return false;
@@ -285,9 +288,10 @@ function generateProductsString(cart) {
   const products = formatArrayProductInString(cart);
 
   let string = "";
+  string += `Olá, eu gostaria de fazer um pedido. Segue os dados abaixo:\n\n`;
   string += `*Forma de entrega:* ${ cart.deliveryWay } \r\n`;
 
-  if(cart.deliveryWay === 'Entrega') {
+  if(cart.deliveryWay === 'entrega') {
     string += `*Endereço de entrega:* ${ cart.address } \r\n`;
     string += `*Bairro para entrega:* ${ cart.district } \r\n`;
     string += `*Taxa de entrega:* ${ Number(cart.deliveryFee).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) } \r\n`;
@@ -300,7 +304,7 @@ function generateProductsString(cart) {
   return window.encodeURIComponent(string);
 }
 
-/* Events --------------------------------------- */
+/* Eventos dos selects de delivery --------------------------------------- */
 document.getElementById('delivery-way-entrega').addEventListener('click', () => {
   document.getElementById('delivery-address-section').classList.remove('hidden');
   document.getElementById('delivery-fee-section').classList.remove('hidden');
@@ -316,7 +320,7 @@ document.getElementById('delivery-way-local').addEventListener('click', () => {
   document.getElementById('delivery-fee-section').classList.add('hidden');
 });
 
-
+/* Evento do botão de "Pedir via Whatsapp" --------------------------------------- */
 document.getElementById('btn-delivery').addEventListener('click', () => {
   const cart = createRequestObject();
   const isValid = validationFields(cart);
@@ -326,6 +330,6 @@ document.getElementById('btn-delivery').addEventListener('click', () => {
   const owner_zap = document.getElementById('btn-delivery').value;
   const href = `https://api.whatsapp.com/send?phone=${ owner_zap }&text=` + string;
   localStorage.clear();
-  window.open(href, "_blank");
+  window.open(href, "_self");
 });
 

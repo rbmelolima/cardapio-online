@@ -15,13 +15,13 @@ function openImage(src, caption) {
   }
 }
 
-/* Increment and Decrement --------------------------------------- */
 function getInputAndNumericValue(idInputNumber) {
   const input = document.getElementById(idInputNumber);
   const numericValue = parseInt(input.value);
   return { input, numericValue }
 }
 
+/* Incremento e decremento --------------------------------------- */
 function incrementQuantityProduct(idInputNumber) {
   let { input, numericValue } = getInputAndNumericValue(idInputNumber);
   if(numericValue == 50) { return; }
@@ -39,7 +39,7 @@ function returnFloatFromPrice(value) {
   return parseFloat(clean);
 }
 
-/* Create product object --------------------------------------- */
+/* Criando o objeto do produto --------------------------------------- */
 function createProductObject(idProduct) {
   function validateContent(value) {
     return value == NaN || value == "" || value == null ? false : true;
@@ -81,7 +81,7 @@ function createProductObject(idProduct) {
   return json;
 }
 
-/* Storage --------------------------------------- */
+/* Local Storage --------------------------------------- */
 function addOrUpdateProductInStorage(productString, key) {
   if(productString == null || key == null) throw 'Parâmetros incorretos';
   localStorage.setItem(key, productString);
@@ -102,7 +102,7 @@ function returnAllProductsOnStorage() {
   return products;
 }
 
-/* Add to cart --------------------------------------- */
+/* Adicionando ao carrinho --------------------------------------- */
 function addCart(idProduct) {
   const productObject = createProductObject(idProduct);
   addOrUpdateProductInStorage(productObject, idProduct);
