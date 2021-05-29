@@ -110,47 +110,8 @@
 </body>
 
 <!-- Scripts -->
-<script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/src/js/products.js"></script>
-
-<script>
-  function openImage(src, caption) {
-    var modal = document.getElementById("myModal");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-
-    modal.style.display = "block";
-    modalImg.src = src;
-    captionText.innerHTML = caption;
-
-    var span = document.getElementsByClassName("close")[0];
-
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-  }
-
-  async function toggleSnackbar(nameProduct) {
-    const seconds = 4 * 1000;
-    const snackbar = document.getElementById("snackbar");
-
-    if (snackbar.classList.contains('invisible')) {
-      snackbar.innerHTML = '';
-      if (nameProduct !== null && nameProduct !== '' && nameProduct !== undefined) {
-        snackbar.append(`${ nameProduct } foi adicionado(a) ao carrinho`);
-      } else {
-        snackbar.append(`O produto foi adicionado ao carrinho`);
-      }
-      snackbar.classList.remove('invisible');
-      setTimeout(function() {
-        snackbar.classList.add('invisible');
-      }, seconds);
-    } else {
-      snackbar.classList.add('invisible');
-      toggleSnackbar(nameProduct);
-    }
-  }
-</script>
+<script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/src/js/page_products.js"></script>
 
 </html>
