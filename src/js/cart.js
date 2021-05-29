@@ -1,5 +1,3 @@
-loadCart();
-
 /* Renderizando no HTML os produtos do carrinho --------------------------------------- */
 function loadCart() {
   let cartProductsContainer = document.getElementById('cart-products-container');

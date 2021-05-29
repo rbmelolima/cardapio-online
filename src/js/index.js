@@ -1,20 +1,3 @@
-/* Modal --------------------------------------- */
-function openImage(src, caption) {
-  var modal = document.getElementById("myModal");
-  var modalImg = document.getElementById("img01");
-  var captionText = document.getElementById("caption");
-
-  modal.style.display = "block";
-  modalImg.src = src;
-  captionText.innerHTML = caption;
-
-  var span = document.getElementsByClassName("close")[0];
-
-  span.onclick = function () {
-    modal.style.display = "none";
-  }
-}
-
 function getInputAndNumericValue(idInputNumber) {
   const input = document.getElementById(idInputNumber);
   const numericValue = parseInt(input.value);
@@ -84,19 +67,19 @@ function createProductObject(idProduct) {
 /* Local Storage --------------------------------------- */
 function addOrUpdateProductInStorage(productString, key) {
   if(productString == null || key == null) throw 'Parâmetros incorretos';
-  localStorage.setItem(key, productString);
+  sessionStorage.setItem(key, productString);
 }
 
 function deleteProductOnStorage(key) {
-  localStorage.removeItem(key);
+  sessionStorage.removeItem(key);
 }
 
 function returnAllProductsOnStorage() {
   let products = [];
-  let keys = Object.keys(localStorage);
+  let keys = Object.keys(sessionStorage);
   for(let key of keys) {
     if(key.toString().startsWith('product')) {
-      products.push(localStorage.getItem(key))
+      products.push(sessionStorage.getItem(key))
     }
   }
   return products;

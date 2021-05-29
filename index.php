@@ -4,6 +4,8 @@
 <?php require_once('includes/head.php'); ?>
 
 <body>
+  <div id="snackbar" class="invisible"></div>
+
   <?php require_once('includes/bottom_navigation.php'); ?>
 
   <?php require_once('includes/modal.php'); ?>
@@ -49,7 +51,9 @@
         if (have_posts()) : while ($loop_product->have_posts()) : $loop_product->the_post();
             //Criando chaves únicas para os produtos e seus inputs
             $random = substr(md5(uniqid("")), 0, 8);
-            $_product_key = "product-key-" . $random;
+
+            $_nameProduct = str_replace(" ", "", get_field('custom_wp_name_product'));
+            $_product_key = "product-key-" . $_nameProduct;
             $_input_key = "input-key-" . $random;
         ?>
             <div class="container-product" id="<?= $_product_key ?>">
@@ -65,7 +69,12 @@
                 </div>
 
                 <div class="information">
-                  <p class="price">R$ 7,00</p>
+                  <p class="price">
+                    <?php
+                    $value = get_field('custom_wp_price_product');
+                    echo 'R$ ' . number_format($value, 2, ',', '.');
+                    ?>
+                  </p>
                 </div>
               </div>
               <div class="row controls">
@@ -74,7 +83,9 @@
                   <input class="quantity" type="text" disabled value="1" id="<?= $_input_key ?>">
                   <button onclick="incrementQuantityProduct('<?= $_input_key ?>')">+</button>
                 </div>
-                <button class="button-add" onclick="addCart('<?= $_product_key ?>')">Adicionar</button>
+                <button class="button-add" onclick="addCart('<?= $_product_key ?>'); toggleSnackbar('<?= the_field('custom_wp_name_product') ?>');">
+                  Adicionar
+                </button>
               </div>
             </div>
 
@@ -96,12 +107,50 @@
     <?php require_once('includes/footer.php'); ?>
 
   </main>
-
-  <!-- Scripts -->
-  <script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/src/js/products.js"></script>
-
 </body>
+
+<!-- Scripts -->
+<script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/src/js/products.js"></script>
+
+<script>
+  function openImage(src, caption) {
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+
+    modal.style.display = "block";
+    modalImg.src = src;
+    captionText.innerHTML = caption;
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  }
+
+  async function toggleSnackbar(nameProduct) {
+    const seconds = 4 * 1000;
+    const snackbar = document.getElementById("snackbar");
+
+    if (snackbar.classList.contains('invisible')) {
+      snackbar.innerHTML = '';
+      if (nameProduct !== null && nameProduct !== '' && nameProduct !== undefined) {
+        snackbar.append(`${ nameProduct } foi adicionado(a) ao carrinho`);
+      } else {
+        snackbar.append(`O produto foi adicionado ao carrinho`);
+      }
+      snackbar.classList.remove('invisible');
+      setTimeout(function() {
+        snackbar.classList.add('invisible');
+      }, seconds);
+    } else {
+      snackbar.classList.add('invisible');
+      toggleSnackbar(nameProduct);
+    }
+  }
+</script>
 
 </html>

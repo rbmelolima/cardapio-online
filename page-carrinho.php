@@ -89,5 +89,8 @@
 <!-- Scripts -->
 <script src="<?php bloginfo('template_url'); ?>/src/js/index.js"></script>
 <script src="<?php bloginfo('template_url'); ?>/src/js/cart.js"></script>
+<script>
+  loadCart();
+</script>
 
 </html>
