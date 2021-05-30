@@ -8,8 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/src/css/style.css" rel="preload" />
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/src/swiper/swiper-bundle.min.css" />
-
-  <title>Netto Pastelaria</title>
+  <?php wp_head(); ?>
+  <style>
+    html {
+      margin: 0 !important
+    }
+  </style>
 </head>
 
 <?php
